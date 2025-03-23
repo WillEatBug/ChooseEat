@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- 饼干 -->
+  <circle cx="64" cy="64" r="40" fill="#E8BB7C" />
+  <circle cx="50" cy="50" r="5" fill="#8B4513" />
+  <circle cx="78" cy="48" r="5" fill="#8B4513" />
+  <circle cx="55" cy="78" r="5" fill="#8B4513" />
+  <circle cx="80" cy="75" r="5" fill="#8B4513" />
+  <circle cx="64" cy="64" r="5" fill="#8B4513" />
+  
+  <!-- 猫咪 -->
+  <path d="M30,50 Q40,30 50,50" fill="none" stroke="#333" stroke-width="3" />
+  <path d="M78,50 Q88,30 98,50" fill="none" stroke="#333" stroke-width="3" />
+  <circle cx="40" cy="45" r="8" fill="#FFA07A" />
+  <circle cx="88" cy="45" r="8" fill="#FFA07A" />
+  <circle cx="40" cy="45" r="4" fill="#333" />
+  <circle cx="88" cy="45" r="4" fill="#333" />
+  <path d="M64,55 Q58,65 64,70 Q70,65 64,55" fill="#FFC0CB" />
+  <path d="M50,80 Q64,90 78,80" fill="none" stroke="#333" stroke-width="3" />
+  
+  <!-- 咬了一口的饼干 -->
+  <path d="M85,40 Q95,30 105,40" fill="#E8BB7C" stroke="#E8BB7C" stroke-width="2" />
+</svg>
