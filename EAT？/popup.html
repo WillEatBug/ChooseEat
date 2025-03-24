@@ -10,10 +10,11 @@
       padding: 15px;
       background-color: #FFF5E6;
       color: #8B4513;
-      border-radius: 15px;
+      border-radius: 20px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       transition: all 0.5s ease;
       position: relative;
+      overflow: hidden;
     }
     
     h1 {
@@ -207,15 +208,77 @@
       color: white;
     }
     
+    /* 猫吃饼干图标样式 */
+    .cat-icon {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      z-index: 5;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .cat-icon:hover {
+      transform: scale(1.1);
+    }
+    
     /* 不同风格的样式 */
     body.warm-style {
       background-color: #FFF5E6;
       color: #8B4513;
+      border: 3px solid #FFAA33;
+    }
+    
+    /* 暖色风格的食物种类框框样式 */
+    body.warm-style .cuisine-btn {
+      background-color: #FFE4C4;
+      border: 2px solid #FFAA33;
+      color: #8B4513;
+    }
+    
+    body.warm-style .cuisine-btn:hover {
+      background-color: #FFAA33;
+      color: white;
+    }
+    
+    body.warm-style .cuisine-btn.active {
+      background-color: #FF8C00;
+      color: white;
+    }
+    
+    /* 暖色风格的食物显示框样式 */
+    body.warm-style .food-display {
+      background-color: #FFF0F5;
+      border: 2px dashed #FF8C00;
     }
     
     body.cool-style {
       background-color: #E6F3FF;
       color: #2F4F4F;
+      border: 3px solid #4682B4;
+    }
+    
+    /* 冷色风格的食物种类框框样式 */
+    body.cool-style .cuisine-btn {
+      background-color: #E0FFFF;
+      border: 2px solid #4682B4;
+      color: #2F4F4F;
+    }
+    
+    body.cool-style .cuisine-btn:hover {
+      background-color: #87CEFA;
+      color: white;
+    }
+    
+    body.cool-style .cuisine-btn.active {
+      background-color: #4682B4;
+      color: white;
+    }
+    
+    /* 冷色风格的食物显示框样式 */
+    body.cool-style .food-display {
+      background-color: #F0F8FF;
+      border: 2px dashed #4682B4;
     }
     
     body.cool-style .style-btn {
@@ -237,6 +300,30 @@
     body.cute-style {
       background-color: #FFF0F5;
       color: #FF69B4;
+      border: 3px solid #FF69B4;
+    }
+    
+    /* 可爱风格的食物种类框框样式 */
+    body.cute-style .cuisine-btn {
+      background-color: #FFECF5;
+      border: 2px solid #FF69B4;
+      color: #FF1493;
+    }
+    
+    body.cute-style .cuisine-btn:hover {
+      background-color: #FFC0CB;
+      color: white;
+    }
+    
+    body.cute-style .cuisine-btn.active {
+      background-color: #FF69B4;
+      color: white;
+    }
+    
+    /* 可爱风格的食物显示框样式 */
+    body.cute-style .food-display {
+      background-color: #FFF0F8;
+      border: 2px dashed #FF69B4;
     }
     
     body.cute-style .style-btn {
@@ -267,6 +354,10 @@
         <button class="mode-btn" id="gain-mode">增肥模式</button>
         <button class="mode-btn" id="lose-mode">减肥模式</button>
       </div>
+    </div>
+    
+    <div class="cat-icon" id="cat-icon">
+      <img src="images/cat_cookie_icon.svg" alt="猫吃饼干" width="40" height="40">
     </div>
     
     <div class="cuisine-selector">
