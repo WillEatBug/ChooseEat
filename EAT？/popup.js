@@ -226,14 +226,58 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateElementsStyle() {
     // 根据当前风格更新标题和按钮样式
     const foodNameEl = document.getElementById('food-name');
+    const foodDisplay = document.querySelector('.food-display');
+    const cuisineButtons = document.querySelectorAll('.cuisine-btn');
     
     // 更新食物名称颜色
     if (currentStyle === 'warm-style') {
       foodNameEl.style.color = '#FF4500';
+      foodDisplay.style.backgroundColor = '#FFF0F5';
+      foodDisplay.style.border = '2px dashed #FF8C00';
+      
+      // 更新食物种类框框样式
+      cuisineButtons.forEach(button => {
+        if (!button.classList.contains('active')) {
+          button.style.backgroundColor = '#FFE4C4';
+          button.style.border = '2px solid #FFAA33';
+          button.style.color = '#8B4513';
+        } else {
+          button.style.backgroundColor = '#FF8C00';
+          button.style.color = 'white';
+        }
+      });
     } else if (currentStyle === 'cool-style') {
       foodNameEl.style.color = '#4682B4';
+      foodDisplay.style.backgroundColor = '#F0F8FF';
+      foodDisplay.style.border = '2px dashed #4682B4';
+      
+      // 更新食物种类框框样式
+      cuisineButtons.forEach(button => {
+        if (!button.classList.contains('active')) {
+          button.style.backgroundColor = '#E0FFFF';
+          button.style.border = '2px solid #4682B4';
+          button.style.color = '#2F4F4F';
+        } else {
+          button.style.backgroundColor = '#4682B4';
+          button.style.color = 'white';
+        }
+      });
     } else if (currentStyle === 'cute-style') {
       foodNameEl.style.color = '#FF69B4';
+      foodDisplay.style.backgroundColor = '#FFF0F8';
+      foodDisplay.style.border = '2px dashed #FF69B4';
+      
+      // 更新食物种类框框样式
+      cuisineButtons.forEach(button => {
+        if (!button.classList.contains('active')) {
+          button.style.backgroundColor = '#FFECF5';
+          button.style.border = '2px solid #FF69B4';
+          button.style.color = '#FF1493';
+        } else {
+          button.style.backgroundColor = '#FF69B4';
+          button.style.color = 'white';
+        }
+      });
     }
   }
   
@@ -254,8 +298,11 @@ document.addEventListener('DOMContentLoaded', function() {
       currentCuisine = this.getAttribute('data-cuisine');
       // 更新时间推荐
       updateTimeRecommendation();
+      // 更新元素样式，确保按钮样式正确应用
+      updateElementsStyle();
     });
   });
+
   
   // 样式切换按钮点击事件
   styleToggleBtn.addEventListener('click', function() {
@@ -310,6 +357,42 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       showEasterEggNotification(`已切换到${modeText}模式`);
+      
+      // 让猫咪显示喵~
+      const catIcon = document.getElementById('cat-icon');
+      if (catIcon) {
+        // 创建猫咪气泡
+        const catBubble = document.createElement('div');
+        catBubble.textContent = '喵~';
+        catBubble.style.position = 'absolute';
+        catBubble.style.bottom = '50px';
+        catBubble.style.right = '20px';
+        catBubble.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+        catBubble.style.color = '#FF69B4';
+        catBubble.style.padding = '5px 10px';
+        catBubble.style.borderRadius = '15px';
+        catBubble.style.fontWeight = 'bold';
+        catBubble.style.zIndex = '1001';
+        catBubble.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+        catBubble.style.fontSize = '14px';
+        
+        document.body.appendChild(catBubble);
+        
+        // 猫咪动画
+        catIcon.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+          catIcon.style.transform = 'scale(1)';
+        }, 500);
+        
+        // 移除猫咪气泡
+        setTimeout(() => {
+          catBubble.style.opacity = '0';
+          catBubble.style.transition = 'opacity 0.5s';
+          setTimeout(() => {
+            catBubble.remove();
+          }, 500);
+        }, 2000);
+      }
       
       // 更新时间推荐
       updateTimeRecommendation();
@@ -435,11 +518,22 @@ document.addEventListener('DOMContentLoaded', function() {
   // 显示彩蛋提示
   function showEasterEggNotification(message) {
     const notification = document.createElement('div');
-    notification.textContent = message;
+    
+    // 处理消息内容，将其分成两行，每行四个字
+    let formattedMessage = '';
+    if (message.length > 4) {
+      formattedMessage = message.substring(0, 4) + '<br>' + message.substring(4);
+    } else {
+      formattedMessage = message;
+    }
+    
+    // 设置消息内容，使用innerHTML以支持换行标签
+    notification.innerHTML = formattedMessage;
+    
+    // 设置样式
     notification.style.position = 'absolute';
     notification.style.bottom = '10px';
-    notification.style.left = '50%';
-    notification.style.transform = 'translateX(-50%)';
+    notification.style.left = '15px'; // 调整位置到左下角
     notification.style.backgroundColor = 'rgba(255, 215, 0, 0.9)';
     notification.style.color = '#8B4513';
     notification.style.padding = '8px 15px';
@@ -447,8 +541,53 @@ document.addEventListener('DOMContentLoaded', function() {
     notification.style.fontWeight = 'bold';
     notification.style.zIndex = '1000';
     notification.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+    notification.style.textAlign = 'center';
+    notification.style.maxWidth = '200px';
+    notification.style.lineHeight = '1.5';
     
     document.body.appendChild(notification);
+    
+    // 让猫图标做一个小动画并显示"喵~"
+    const catIcon = document.getElementById('cat-icon');
+    if (catIcon) {
+      // 创建猫咪气泡
+      const catBubble = document.createElement('div');
+      catBubble.textContent = '喵~';
+      catBubble.style.position = 'absolute';
+      catBubble.style.bottom = '50px';
+      catBubble.style.right = '20px';
+      catBubble.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+      catBubble.style.color = '#FF69B4';
+      catBubble.style.padding = '5px 10px';
+      catBubble.style.borderRadius = '15px';
+      catBubble.style.fontWeight = 'bold';
+      catBubble.style.zIndex = '1001';
+      catBubble.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+      catBubble.style.fontSize = '14px';
+      catBubble.style.setProperty('--after-position', 'absolute');
+      catBubble.style.setProperty('--after-bottom', '-5px');
+      catBubble.style.setProperty('--after-right', '10px');
+      catBubble.style.setProperty('--after-border-left', '5px solid transparent');
+      catBubble.style.setProperty('--after-border-right', '5px solid transparent');
+      catBubble.style.setProperty('--after-border-top', '5px solid rgba(255, 255, 255, 0.9)');
+      
+      document.body.appendChild(catBubble);
+      
+      // 猫咪动画
+      catIcon.style.transform = 'scale(1.2)';
+      setTimeout(() => {
+        catIcon.style.transform = 'scale(1)';
+      }, 500);
+      
+      // 移除猫咪气泡
+      setTimeout(() => {
+        catBubble.style.opacity = '0';
+        catBubble.style.transition = 'opacity 0.5s';
+        setTimeout(() => {
+          catBubble.remove();
+        }, 500);
+      }, 2000);
+    }
     
     setTimeout(() => {
       notification.style.opacity = '0';
